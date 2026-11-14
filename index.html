@@ -46,7 +46,7 @@
 
   <main>
     <section class="hero" id="home">
-      <div class="hero-image" role="img" aria-label="شاورما لحمة عوافي"></div>
+      <div class="hero-image" id="hero-image" role="img" aria-label="صور متحركة لأطباق وفروع لحمة عوافي"></div><div class="hero-dots" id="hero-dots" aria-label="التنقل بين صور الواجهة"></div>
       <div class="hero-shade"></div>
       <div class="hero-content">
         <div class="hero-kicker"><span></span> نكهة تستاهل المشوار <span></span></div>
@@ -91,13 +91,7 @@
           <div class="menu-heading-side"><span class="menu-heading-number">02</span><span>THE MENU<br>EST. AWAFI</span></div>
         </div>
         <div class="menu-toolbar reveal">
-          <div class="category-tabs" role="group" aria-label="تصفية الأصناف">
-            <button class="category-tab active" type="button" data-filter="all" aria-pressed="true">كل الأصناف <span>30</span></button>
-            <button class="category-tab" type="button" data-filter="main" aria-pressed="false">الأصناف الرئيسية <span>18</span></button>
-            <button class="category-tab" type="button" data-filter="sides" aria-pressed="false">الطلبات الجانبية <span>5</span></button>
-            <button class="category-tab" type="button" data-filter="sauces" aria-pressed="false">الصوصات <span>2</span></button>
-            <button class="category-tab" type="button" data-filter="drinks" aria-pressed="false">المشروبات <span>5</span></button>
-          </div>
+          
           <label class="menu-search"><i class="fa-solid fa-magnifying-glass"></i><input type="search" id="menu-search" placeholder="وش تشتهي اليوم؟" autocomplete="off"><kbd>بحث</kbd></label>
         </div>
         <div class="menu-grid" id="menu-grid" aria-live="polite"></div>
@@ -166,6 +160,42 @@
   </aside>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <button class="floating-cart" type="button" data-open-cart aria-label="فتح سلة الطلبات"><i class="fa-solid fa-bag-shopping"></i><span data-cart-count>0</span></button>
+  <button class="admin-launch" id="admin-launch" type="button" aria-label="فتح لوحة التعديل"><i class="fa-solid fa-sliders"></i><span>تعديل</span></button>
+  <div class="admin-modal" id="admin-modal" hidden>
+    <div class="admin-backdrop" data-admin-close></div>
+    <section class="admin-dialog" role="dialog" aria-modal="true" aria-labelledby="admin-title">
+      <button class="admin-close" type="button" data-admin-close aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
+      <div class="admin-login" id="admin-login">
+        <span class="admin-mark"><i class="fa-solid fa-lock"></i></span><p class="admin-kicker">AWAFI CONTROL</p><h2 id="admin-title">دخول لوحة التعديل</h2><p>أدخل رمز الوصول للمتابعة</p>
+        <form id="admin-pin-form"><input id="admin-pin" type="password" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••" aria-label="رمز الوصول" required><button class="admin-primary" type="submit">فتح لوحة التعديل <i class="fa-solid fa-arrow-left"></i></button><small id="admin-pin-error" role="alert"></small></form>
+      </div>
+      <div class="admin-workspace" id="admin-workspace" hidden>
+        <div class="admin-workspace-head"><div><p class="admin-kicker">AWAFI CONTROL</p><h2>إدارة الموقع</h2></div><span class="admin-live"><i></i> وضع التعديل</span></div>
+        <div class="admin-tabs"><button type="button" class="admin-tab active" data-admin-tab="products">المنتجات</button><button type="button" class="admin-tab" data-admin-tab="hero">صور الواجهة</button></div>
+        <div class="admin-pane" id="admin-products-pane">
+          <label class="admin-field">اختر المنتج <select id="admin-product-select"></select></label>
+          <div class="admin-form-grid">
+            <label class="admin-field">اسم المنتج<input id="admin-name" type="text"></label>
+            <label class="admin-field">الاسم بالإنجليزية<input id="admin-english" type="text" dir="ltr"></label>
+            <label class="admin-field">السعر (ريال)<input id="admin-price" type="number" min="0" step="0.5"></label>
+            <label class="admin-field">السعرات الحرارية<input id="admin-calories" type="number" min="0"></label>
+            <label class="admin-field admin-wide">الوصف<textarea id="admin-description" rows="2"></textarea></label>
+            <label class="admin-field">التصنيف<select id="admin-category"><option value="main">الأصناف الرئيسية</option><option value="sides">الطلبات الجانبية</option><option value="sauces">الصوصات</option><option value="drinks">المشروبات</option></select></label>
+            <label class="admin-field">صورة المنتج<input id="admin-product-image" type="file" accept="image/*"></label>
+          </div>
+          <div class="admin-preview" id="admin-product-preview"></div>
+          <div class="admin-actions"><button class="admin-primary" id="admin-save-product" type="button">حفظ التغييرات</button><button class="admin-secondary" id="admin-add-product" type="button">إضافة منتج</button><button class="admin-danger" id="admin-delete-product" type="button">حذف المنتج</button></div>
+        </div>
+        <div class="admin-pane" id="admin-hero-pane" hidden>
+          <p class="admin-help">أضف صوراً عريضة عالية الجودة لتتبدل تلقائياً في واجهة الموقع. يمكنك اختيار أكثر من صورة دفعة واحدة.</p>
+          <label class="admin-upload-zone"><i class="fa-solid fa-cloud-arrow-up"></i><strong>رفع صور الواجهة</strong><span>JPG أو PNG أو WebP</span><input id="admin-hero-upload" type="file" accept="image/*" multiple></label>
+          <div class="admin-hero-list" id="admin-hero-list"></div>
+          <button class="admin-primary" id="admin-save-hero" type="button">حفظ صور الواجهة</button>
+        </div>
+        <p class="admin-storage-note"><i class="fa-solid fa-circle-info"></i> التعديلات محفوظة على هذا المتصفح فقط. يلزم ربط قاعدة بيانات وتخزين صور لتظهر التغييرات لجميع الزوار والأجهزة.</p>
+      </div>
+    </section>
+  </div>
   <script src="script.js" defer></script>
 </body>
 </html>
