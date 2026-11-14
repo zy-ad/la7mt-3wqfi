@@ -184,3 +184,6 @@
 }
 @media(min-width:761px){.reviews-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.review-card{min-width:0}}
 @media(max-width:390px){.nav-shell{width:calc(100% - 20px)}.brand img{width:68px}.order-button-nav{padding:5px 8px!important}.menu-grid{gap:8px}.menu-card h3{font-size:10px}.review-card{flex-basis:88vw}}
+
+.product-description{font-size:10px;line-height:1.8;color:#85796c;margin:6px 0 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+@media(max-width:760px){.product-description{font-size:9px;-webkit-line-clamp:2}}
