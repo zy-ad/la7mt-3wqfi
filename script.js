@@ -43,7 +43,7 @@ let activeFilter='all',expandedMenu=false,toastTimer=0,lastFocusedElement=null;
 const cart=Object.create(null);
 function renderMenu(){
 const query=search.value.trim().toLocaleLowerCase('ar');
-const shown=products.filter(p=>p.name.toLocaleLowerCase('ar').includes(query)||p.english.toLowerCase().includes(query));
+const shown=products.filter(p=>(activeFilter==='all'||p.category===activeFilter)&&(p.name.toLocaleLowerCase('ar').includes(query)||p.english.toLowerCase().includes(query)));
 const visible=expandedMenu?shown:shown.slice(0,6);
 grid.innerHTML=visible.map((p,i)=>'<article class="menu-card reveal visible"><div class="menu-card-image">'+imageMarkup(p)+'<span class="menu-number">'+String(i+1).padStart(2,'0')+' / '+String(shown.length).padStart(2,'0')+'</span></div><div class="menu-card-body"><div class="menu-card-title-row"><div><h3>'+safeText(p.name)+'</h3><p class="english-name">'+safeText(p.english)+'</p>'+(p.calories?'<p class="product-calories">'+p.calories+' سعرة حرارية</p>':'')+'</div></div><div class="menu-card-bottom"><span class="price"><span>'+money(p.price)+'</span>'+currencyIcon+'</span><button class="add-to-cart" type="button" data-add="'+p.id+'" aria-label="أضف '+safeText(p.name)+' إلى السلة"><i class="fa-solid fa-plus"></i></button></div></div></article>').join('');
 grid.querySelectorAll('.menu-card-image img').forEach(img=>img.addEventListener('error',()=>{const f=document.createElement('div');f.className='product-placeholder';f.setAttribute('aria-hidden','true');f.innerHTML='<i class="fa-solid fa-utensils"></i><span>لحمة عوافي</span>';img.replaceWith(f);},{once:true}));
@@ -67,6 +67,7 @@ grid.addEventListener('click',event=>{const button=event.target.closest('[data-a
 const cartItems=document.getElementById('cart-items');if(cartItems)cartItems.addEventListener('click',event=>{const button=event.target.closest('[data-qty]');if(!button)return;const item=cart[button.dataset.qty];if(!item)return;item.qty+=Number(button.dataset.delta);if(item.qty<=0)delete cart[button.dataset.qty];updateCart();});
 document.querySelectorAll('[data-open-cart]').forEach(el=>el.addEventListener('click',openCart));document.querySelectorAll('[data-close-cart]').forEach(el=>el.addEventListener('click',closeCart));document.addEventListener('keydown',event=>{if(event.key==='Escape')closeCart();});
 const emptyLink=document.querySelector('.cart-empty .text-link');if(emptyLink)emptyLink.addEventListener('click',closeCart);
+document.querySelectorAll('.category-tab').forEach(button=>button.addEventListener('click',()=>{activeFilter=button.dataset.filter||'all';expandedMenu=false;document.querySelectorAll('.category-tab').forEach(tab=>{const active=tab===button;tab.classList.toggle('active',active);tab.setAttribute('aria-pressed',String(active));});renderMenu();}));
 search.addEventListener('input',()=>{expandedMenu=false;renderMenu();});
 const menuExpand=document.getElementById('menu-expand');if(menuExpand)menuExpand.addEventListener('click',()=>{expandedMenu=!expandedMenu;renderMenu();});
 const menuToggle=document.querySelector('.mobile-menu-toggle'),mobileNav=document.getElementById('mobile-menu');
