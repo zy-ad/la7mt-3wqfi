@@ -62,3 +62,16 @@
 .branch-photos-link:hover{background:#f8f2e9}
 @media(max-width:760px){.branches-grid{grid-template-columns:1fr;gap:17px;margin-top:25px}.branch-map,.branch-map iframe{height:220px}.branch-card-body{padding:21px}.price{font-size:17px}.price .currency-icon{width:21px;height:21px}.cart-total strong{font-size:21px}.hungerstation-icon{width:32px;height:32px}.order-button-nav .hungerstation-icon{width:32px;height:32px}}
 @media(max-width:390px){.branch-map,.branch-map iframe{height:195px}.branch-card-top{padding:14px 17px}.branch-card-body{padding:18px}.branch-card-body h3{font-size:20px}}
+
+/* Polished compact HungerStation action and progressive menu reveal */
+.order-button-nav{border-radius:999px;padding:7px 13px 7px 15px;gap:8px;font-size:10.5px;min-height:42px;box-shadow:0 5px 16px rgba(150,45,34,.17)}
+.order-button-nav .hungerstation-icon{width:25px;height:25px;padding:3px;background:#fff;border-radius:50%;object-fit:contain}
+.order-button-nav>i{font-size:9px;opacity:.8}
+.order-button-nav:hover{transform:translateY(-2px);background:#8e2b22;box-shadow:0 8px 20px rgba(150,45,34,.24)}
+.story-photo-main img{object-position:center 54%}
+.menu-expand-wrap{display:flex;justify-content:center;margin-top:27px}
+.menu-expand-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-width:190px;padding:13px 22px;border:1px solid rgba(142,43,34,.22);border-radius:999px;background:transparent;color:var(--red);font-family:inherit;font-size:11px;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.menu-expand-button:hover{background:#f4eae1;border-color:var(--red);transform:translateY(-2px)}
+.menu-expand-button[hidden]{display:none!important}
+.menu-expand-button i{font-size:10px}
+@media(max-width:760px){.order-button-nav{min-height:39px;padding:6px 11px;gap:6px;font-size:10px;border-radius:999px}.order-button-nav .hungerstation-icon{width:23px;height:23px}.menu-expand-wrap{margin-top:20px}.menu-expand-button{min-width:175px;padding:12px 19px}}

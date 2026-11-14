@@ -39,14 +39,17 @@ const safeText=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'
 const imageMarkup=product=>product.image?'<img src="'+encodeURI(product.image)+'" alt="'+safeText(product.name)+'" loading="lazy">':'<div class="product-placeholder" aria-hidden="true"><i class="fa-solid fa-utensils"></i><span>لحمة عوافي</span></div>';
 const grid=document.getElementById('menu-grid'),empty=document.getElementById('menu-empty'),search=document.getElementById('menu-search');
 if(!grid||!empty||!search)return;
-let activeFilter='all',toastTimer=0,lastFocusedElement=null;
+let activeFilter='all',expandedMenu=false,toastTimer=0,lastFocusedElement=null;
 const cart=Object.create(null);
 function renderMenu(){
 const query=search.value.trim().toLocaleLowerCase('ar');
 const shown=products.filter(p=>(activeFilter==='all'||p.category===activeFilter)&&(p.name.toLocaleLowerCase('ar').includes(query)||p.english.toLowerCase().includes(query)));
-grid.innerHTML=shown.map((p,i)=>'<article class="menu-card reveal visible"><div class="menu-card-image">'+imageMarkup(p)+'<span class="menu-number">'+String(i+1).padStart(2,'0')+' / '+String(shown.length).padStart(2,'0')+'</span></div><div class="menu-card-body"><div class="menu-card-title-row"><div><h3>'+safeText(p.name)+'</h3><p class="english-name">'+safeText(p.english)+'</p>'+(p.calories?'<p class="product-calories">'+p.calories+' سعرة حرارية</p>':'')+'</div></div><div class="menu-card-bottom"><span class="price"><span>'+money(p.price)+'</span>'+currencyIcon+'</span><button class="add-to-cart" type="button" data-add="'+p.id+'" aria-label="أضف '+safeText(p.name)+' إلى السلة"><i class="fa-solid fa-plus"></i></button></div></div></article>').join('');
+const visible=expandedMenu?shown:shown.slice(0,6);
+grid.innerHTML=visible.map((p,i)=>'<article class="menu-card reveal visible"><div class="menu-card-image">'+imageMarkup(p)+'<span class="menu-number">'+String(i+1).padStart(2,'0')+' / '+String(shown.length).padStart(2,'0')+'</span></div><div class="menu-card-body"><div class="menu-card-title-row"><div><h3>'+safeText(p.name)+'</h3><p class="english-name">'+safeText(p.english)+'</p>'+(p.calories?'<p class="product-calories">'+p.calories+' سعرة حرارية</p>':'')+'</div></div><div class="menu-card-bottom"><span class="price"><span>'+money(p.price)+'</span>'+currencyIcon+'</span><button class="add-to-cart" type="button" data-add="'+p.id+'" aria-label="أضف '+safeText(p.name)+' إلى السلة"><i class="fa-solid fa-plus"></i></button></div></div></article>').join('');
 grid.querySelectorAll('.menu-card-image img').forEach(img=>img.addEventListener('error',()=>{const f=document.createElement('div');f.className='product-placeholder';f.setAttribute('aria-hidden','true');f.innerHTML='<i class="fa-solid fa-utensils"></i><span>لحمة عوافي</span>';img.replaceWith(f);},{once:true}));
 empty.hidden=shown.length!==0;grid.hidden=shown.length===0;
+const expand=document.getElementById('menu-expand');
+if(expand){expand.hidden=shown.length<=6;expand.setAttribute('aria-expanded',String(expandedMenu));expand.innerHTML=expandedMenu?'عرض أصناف أقل <i class="fa-solid fa-chevron-up"></i>':'عرض القائمة كاملة ('+money(shown.length)+') <i class="fa-solid fa-chevron-down"></i>';}
 }
 function showToast(message){const toast=document.getElementById('toast');if(!toast)return;toast.textContent=message;toast.classList.add('show');window.clearTimeout(toastTimer);toastTimer=window.setTimeout(()=>toast.classList.remove('show'),2200);}
 function cartQuantity(){return Object.values(cart).reduce((sum,item)=>sum+item.qty,0);}
@@ -64,8 +67,9 @@ grid.addEventListener('click',event=>{const button=event.target.closest('[data-a
 const cartItems=document.getElementById('cart-items');if(cartItems)cartItems.addEventListener('click',event=>{const button=event.target.closest('[data-qty]');if(!button)return;const item=cart[button.dataset.qty];if(!item)return;item.qty+=Number(button.dataset.delta);if(item.qty<=0)delete cart[button.dataset.qty];updateCart();});
 document.querySelectorAll('[data-open-cart]').forEach(el=>el.addEventListener('click',openCart));document.querySelectorAll('[data-close-cart]').forEach(el=>el.addEventListener('click',closeCart));document.addEventListener('keydown',event=>{if(event.key==='Escape')closeCart();});
 const emptyLink=document.querySelector('.cart-empty .text-link');if(emptyLink)emptyLink.addEventListener('click',closeCart);
-document.querySelectorAll('.category-tab').forEach(button=>button.addEventListener('click',()=>{activeFilter=button.dataset.filter||'all';document.querySelectorAll('.category-tab').forEach(tab=>{const active=tab===button;tab.classList.toggle('active',active);tab.setAttribute('aria-pressed',String(active));});renderMenu();}));
-search.addEventListener('input',renderMenu);
+document.querySelectorAll('.category-tab').forEach(button=>button.addEventListener('click',()=>{activeFilter=button.dataset.filter||'all';expandedMenu=false;document.querySelectorAll('.category-tab').forEach(tab=>{const active=tab===button;tab.classList.toggle('active',active);tab.setAttribute('aria-pressed',String(active));});renderMenu();}));
+search.addEventListener('input',()=>{expandedMenu=false;renderMenu();});
+const menuExpand=document.getElementById('menu-expand');if(menuExpand)menuExpand.addEventListener('click',()=>{expandedMenu=!expandedMenu;renderMenu();});
 const menuToggle=document.querySelector('.mobile-menu-toggle'),mobileNav=document.getElementById('mobile-menu');
 function closeMobileMenu(){if(!mobileNav||!menuToggle)return;mobileNav.hidden=true;menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','فتح القائمة');}
 if(menuToggle&&mobileNav){menuToggle.addEventListener('click',()=>{const opening=menuToggle.getAttribute('aria-expanded')!=='true';mobileNav.hidden=!opening;menuToggle.setAttribute('aria-expanded',String(opening));menuToggle.setAttribute('aria-label',opening?'إغلاق القائمة':'فتح القائمة');});mobileNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMobileMenu));document.addEventListener('click',event=>{if(!mobileNav.hidden&&!mobileNav.contains(event.target)&&!menuToggle.contains(event.target))closeMobileMenu();});}
