@@ -4,10 +4,10 @@ const hungerUrl='https://hungerstation.com/sa-ar/restaurants/regions/الريا�
 const currencyIcon='<img class="currency-icon" src="رمز-الريال-متجاوب.svg" alt="ريال سعودي">';
 const products=[
 {id:'chicken-sandwich',name:'عوافي دجاج بالصمون العراقي',english:'Awafi Chicken Iraqi Samoon',price:14,category:'main',image:'دجاج-عوافي.webp'},
-{id:'chicken-sajiya-small',name:'صاجية دجاج - صغير',english:'Chicken Sajiya · Small',price:12,category:'main',image:'صاجية عوافي دجاج صغير - Awafi small chicken sajiya.webp'},
-{id:'chicken-sajiya-large',name:'صاجية دجاج - كبير',english:'Chicken Sajiya · Large',price:18,category:'main',image:'صاجية عوافي دجاج كبير - Awafi Big chicken sajiya.webp'},
-{id:'hashi-sajiya-small',name:'صاجية حاشي - صغير',english:'Hashi Sajiya · Small',price:14,category:'main',image:'صاجية عوافي حاشي صغير - Sajiya Awafi, small Hashi.webp'},
-{id:'hashi-sajiya-large',name:'صاجية حاشي - كبير',english:'Hashi Sajiya · Large',price:28,category:'main',image:'صاجية عوافي حاشي كبير - Sajiya Awafi, Big Hashi.webp'},
+{id:'chicken-sajiya-small',name:'صاجية دجاج - صغير',english:'Chicken Sajiya · Small',price:12,calories:183,category:'main',image:'صاجية عوافي دجاج صغير - Awafi small chicken sajiya.webp'},
+{id:'chicken-sajiya-large',name:'صاجية دجاج - كبير',english:'Chicken Sajiya · Large',price:18,calories:792,category:'main',image:'صاجية عوافي دجاج كبير - Awafi Big chicken sajiya.webp'},
+{id:'hashi-sajiya-small',name:'صاجية حاشي - صغير',english:'Hashi Sajiya · Small',price:14,calories:300,category:'main',image:'صاجية عوافي حاشي صغير - Sajiya Awafi, small Hashi.webp'},
+{id:'hashi-sajiya-large',name:'صاجية حاشي - كبير',english:'Hashi Sajiya · Large',price:28,calories:792,category:'main',image:'صاجية عوافي حاشي كبير - Sajiya Awafi, Big Hashi.webp'},
 {id:'arabic-shawarma-box',name:'بوكس الشاورما العربي المتنوع',english:'Mixed Arabic Shawarma Box',price:98,category:'main'},
 {id:'gathering-box',name:'بوكس الجمعات شاورما حاشي ودجاج',english:'Hashi & Chicken Gathering Box',price:98,category:'main'},
 {id:'sambosa-box',name:'بوكس سنموسه متنوع شاورما حاشي وعجل ودجاج',english:'Mixed Shawarma Sambosa Box',price:36,category:'main'},
@@ -24,15 +24,15 @@ const products=[
 {id:'hashi-hummus',name:'حمص حاشي',english:'Hashi Hummus',price:22,category:'sides'},
 {id:'chicken-hummus',name:'حمص دجاج',english:'Chicken Hummus',price:20,category:'sides'},
 {id:'plain-hummus',name:'حمص سادة',english:'Plain Hummus',price:15,category:'sides'},
-{id:'shawarma-sambosa',name:'سنبوسه شاورما حاشي ودجاج',english:'Hashi & Chicken Shawarma Sambosa',price:5,category:'sides'},
+{id:'shawarma-sambosa',name:'سنبوسه شاورما حاشي ودجاج',english:'Hashi & Chicken Shawarma Sambosa',price:5,calories:10,category:'sides'},
 {id:'caramel-cream',name:'كريمة كراميل اللذيذة',english:'Delicious Creme Caramel',price:12,category:'sides'},
 {id:'blonde-chili',name:'شطة شقراء',english:'Blonde Chili Sauce',price:6,category:'sauces'},
-{id:'tahini',name:'طحينة',english:'Tahini',price:5,category:'sauces'},
+{id:'tahini',name:'طحينة',english:'Tahini',price:5,calories:90,category:'sauces'},
 {id:'cocktail-juice',name:'عصير كوكتيل',english:'Cocktail Juice',price:15,category:'drinks'},
 {id:'pomegranate-juice',name:'عصير رمان',english:'Pomegranate Juice',price:15,category:'drinks'},
-{id:'cola',name:'كولا',english:'Cola',price:5,category:'drinks'},
-{id:'sprite',name:'سبرايت',english:'Sprite',price:5,category:'drinks'},
-{id:'water',name:'ماء',english:'Water',price:2,category:'drinks'}
+{id:'cola',name:'كولا',english:'Cola',price:5,calories:133,category:'drinks'},
+{id:'sprite',name:'سبرايت',english:'Sprite',price:5,calories:190,category:'drinks'},
+{id:'water',name:'ماء',english:'Water',price:2,calories:1,category:'drinks'}
 ];
 const money=value=>new Intl.NumberFormat('ar-SA',{maximumFractionDigits:0}).format(value);
 const safeText=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));

@@ -28,3 +28,6 @@
 .menu-card h3{overflow-wrap:anywhere}
 @media(max-width:760px){.category-tabs{display:flex;overflow-x:auto;flex-wrap:nowrap;padding-bottom:5px;scrollbar-width:thin}.category-tab{flex:0 0 auto}.menu-card-image{height:160px}.price .currency-icon{width:15px;height:17px}}
 @media(max-width:390px){.menu-card-image{height:132px}.product-placeholder i{font-size:25px}}
+
+.product-calories{font-size:9px;color:#9b8b79;margin:5px 0 0;display:flex;align-items:center;gap:5px}
+.product-calories:before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold);display:inline-block}
