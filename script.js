@@ -34,7 +34,7 @@ const products=[
 {id:'sprite',name:'سبرايت',english:'Sprite',price:5,calories:190,category:'drinks'},
 {id:'water',name:'ماء',english:'Water',price:2,calories:1,category:'drinks'}
 ];
-const money=value=>new Intl.NumberFormat('ar-SA',{maximumFractionDigits:0}).format(value);
+const money=value=>new Intl.NumberFormat('ar-SA-u-nu-arab',{maximumFractionDigits:0}).format(value);
 const safeText=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const imageMarkup=product=>product.image?'<img src="'+encodeURI(product.image)+'" alt="'+safeText(product.name)+'" loading="lazy">':'<div class="product-placeholder" aria-hidden="true"><i class="fa-solid fa-utensils"></i><span>لحمة عوافي</span></div>';
 const grid=document.getElementById('menu-grid'),empty=document.getElementById('menu-empty'),search=document.getElementById('menu-search');
@@ -54,8 +54,8 @@ function updateCart(){
 const count=cartQuantity();document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=money(count));
 const entries=Object.values(cart),total=entries.reduce((sum,item)=>sum+item.product.price*item.qty,0);
 const cartEmpty=document.getElementById('cart-empty'),cartFooter=document.getElementById('cart-footer'),cartTotal=document.getElementById('cart-total'),cartItems=document.getElementById('cart-items');
-if(cartEmpty)cartEmpty.hidden=entries.length>0;if(cartFooter)cartFooter.hidden=entries.length===0;if(cartTotal)cartTotal.innerHTML=money(total)+' '+currencyIcon;
-if(cartItems){cartItems.innerHTML=entries.map(({product:p,qty})=>'<article class="cart-item">'+imageMarkup(p)+'<div><h3>'+safeText(p.name)+'</h3><p><span>'+money(p.price)+'</span> '+currencyIcon+'</p><div class="quantity-control"><button type="button" data-qty="'+p.id+'" data-delta="-1" aria-label="تقليل الكمية">−</button><span>'+qty+'</span><button type="button" data-qty="'+p.id+'" data-delta="1" aria-label="زيادة الكمية">+</button></div></div><strong class="cart-item-price"><span>'+money(p.price*qty)+'</span>'+currencyIcon+'</strong></article>').join('');cartItems.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>img.remove(),{once:true}));}
+if(cartEmpty){cartEmpty.hidden=entries.length>0;cartEmpty.style.display=entries.length>0?'none':'';}if(cartFooter){cartFooter.hidden=entries.length===0;cartFooter.style.display=entries.length===0?'none':'';}if(cartTotal)cartTotal.innerHTML=money(total)+' '+currencyIcon;
+if(cartItems){cartItems.hidden=entries.length===0;cartItems.innerHTML=entries.map(({product:p,qty})=>'<article class="cart-item">'+imageMarkup(p)+'<div><h3>'+safeText(p.name)+'</h3><p><span>'+money(p.price)+'</span> '+currencyIcon+'</p><div class="quantity-control"><button type="button" data-qty="'+p.id+'" data-delta="-1" aria-label="تقليل الكمية">−</button><span>'+qty+'</span><button type="button" data-qty="'+p.id+'" data-delta="1" aria-label="زيادة الكمية">+</button></div></div><strong class="cart-item-price"><span>'+money(p.price*qty)+'</span>'+currencyIcon+'</strong></article>').join('');cartItems.querySelectorAll('img').forEach(img=>img.addEventListener('error',()=>img.remove(),{once:true}));}
 document.querySelectorAll('.floating-cart').forEach(el=>el.setAttribute('aria-label','فتح السلة، '+count+' أصناف'));
 }
 function openCart(){const drawer=document.getElementById('cart-drawer');if(!drawer)return;lastFocusedElement=document.activeElement;drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');document.querySelectorAll('.cart-backdrop').forEach(el=>el.hidden=false);document.body.classList.add('cart-open');const close=drawer.querySelector('button');if(close)close.focus();}

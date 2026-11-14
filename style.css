@@ -31,3 +31,34 @@
 
 .product-calories{font-size:9px;color:#9b8b79;margin:5px 0 0;display:flex;align-items:center;gap:5px}
 .product-calories:before{content:"";width:4px;height:4px;border-radius:50%;background:var(--gold);display:inline-block}
+
+/* Typography, currency direction, cart visibility and branch locations */
+[hidden]{display:none!important}
+.price,.cart-total strong,.cart-item-price,.cart-item p{direction:rtl;flex-direction:row;align-items:center}
+.price{gap:7px;font-family:'Alexandria',sans-serif;font-size:19px;font-weight:800;letter-spacing:-.035em;color:var(--ink);font-variant-numeric:tabular-nums}
+.price .currency-icon,.cart-total .currency-icon,.cart-item-price .currency-icon,.cart-item p .currency-icon{width:23px;height:23px;object-fit:contain;flex:0 0 auto}
+.cart-total strong{font-family:'Alexandria',sans-serif;font-size:23px;font-weight:800;gap:8px;font-variant-numeric:tabular-nums}
+.cart-item-price{font-family:'Alexandria',sans-serif;font-size:15px;font-weight:800;gap:6px;font-variant-numeric:tabular-nums}
+.cart-item p{display:flex;gap:5px;font-family:'Alexandria',sans-serif;font-weight:700;font-variant-numeric:tabular-nums}
+.hungerstation-icon{width:33px;height:33px;object-fit:contain;flex:0 0 auto}
+.order-button-nav .hungerstation-icon{width:35px;height:35px}
+.order-banner .hungerstation-icon{width:36px;height:36px;padding:1px;background:#fff;border-radius:8px}
+.footer-order .hungerstation-icon{width:30px;height:30px}
+.story-photo img{object-fit:cover}
+.branches-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:38px}
+.branch-card{overflow:hidden;background:var(--white);border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 48px rgba(35,25,15,.07)}
+.branch-card-top{display:flex;align-items:center;justify-content:space-between;padding:17px 22px;background:#f4eee5;border-bottom:1px solid var(--line)}
+.branch-number{font:700 10px 'DM Sans',sans-serif;letter-spacing:.14em;color:#9b7951}
+.branch-tag{display:flex;align-items:center;gap:7px;color:var(--red);font-size:10px;font-weight:700}
+.branch-card-body{position:relative;padding:25px 24px 18px}
+.branch-pin{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:#f6eee3;color:var(--red);font-size:17px;margin-bottom:14px}
+.branch-card-body h3{margin:0 0 8px;font-size:22px;color:var(--ink)}
+.branch-address{max-width:390px;margin:0;color:#817568;font-size:12px;line-height:1.9}
+.branch-meta{display:flex;align-items:center;flex-wrap:wrap;gap:17px;margin-top:16px}
+.branch-meta a{display:inline-flex;align-items:center;gap:7px;color:var(--red);font-size:11px;font-weight:700;text-decoration:none}
+.branch-meta a i{font-size:12px}
+.branch-map,.branch-map iframe{width:100%;height:245px;display:block;border:0;background:#e8e1d7}
+.branch-photos-link{display:flex;align-items:center;justify-content:center;gap:9px;padding:15px 18px;color:var(--red);font-size:11px;font-weight:700;text-decoration:none;border-top:1px solid var(--line);transition:background .2s ease}
+.branch-photos-link:hover{background:#f8f2e9}
+@media(max-width:760px){.branches-grid{grid-template-columns:1fr;gap:17px;margin-top:25px}.branch-map,.branch-map iframe{height:220px}.branch-card-body{padding:21px}.price{font-size:17px}.price .currency-icon{width:21px;height:21px}.cart-total strong{font-size:21px}.hungerstation-icon{width:32px;height:32px}.order-button-nav .hungerstation-icon{width:32px;height:32px}}
+@media(max-width:390px){.branch-map,.branch-map iframe{height:195px}.branch-card-top{padding:14px 17px}.branch-card-body{padding:18px}.branch-card-body h3{font-size:20px}}
