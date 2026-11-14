@@ -6,7 +6,7 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 
 /* AWAFI LIGHT LUXURY — complete catalog */
-:root{--ink:#29251f;--paper:#fffdf8;--red:#8d332b;--gold:#b58a50}
+:root{--ink:#29251f;--paper:#fffdf8;--red:#8b1e32;--gold:#d4a62a}
 body{background:var(--paper);color:var(--ink)}
 .announcement{background:#f2e9dc;color:#6d4b38}
 .site-header{background:rgba(255,253,248,.96);border-bottom:1px solid #e9e1d5}
@@ -54,14 +54,14 @@ body{background:var(--paper);color:var(--ink)}
 .cart-item-price{font-size:12px;color:var(--red);display:flex;align-items:center;gap:4px}
 .cart-total strong{color:var(--red);display:inline-flex;align-items:center;gap:6px}.cart-total .rial-symbol{width:20px;height:20px}
 .quantity-control button{border:1px solid #e3d7c8;color:var(--red);background:#fbf6ef;border-radius:7px;width:27px;height:27px}
-.cart-order-link{background:var(--red)}.floating-cart{background:var(--red);box-shadow:0 10px 28px #8d332b35}
-:focus-visible{outline:3px solid #b58a50!important;outline-offset:3px}
+.cart-order-link{background:var(--red)}.floating-cart{background:var(--red);box-shadow:0 10px 28px #8b1e3235}
+:focus-visible{outline:3px solid #d4a62a!important;outline-offset:3px}
 @media(max-width:900px){.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}}
 @media(max-width:560px){.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.menu-card-image{height:145px}.menu-card-body{padding:12px 11px;min-height:180px}.menu-card h3{font-size:12px}.menu-description{font-size:10px;min-height:42px}.price{font-size:16px}.price .rial-symbol{width:15px;height:15px}.add-to-cart{width:32px;height:32px}.category-tabs{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:5px}.category-tab{white-space:nowrap;padding:9px 12px}.menu-toolbar{gap:12px}.menu-search{width:100%}}
 @media(hover:none){.menu-card:hover{transform:none}}
 
 /* Media details */
-.menu-image-placeholder{height:100%;min-height:180px;display:grid;place-items:center;background:linear-gradient(135deg,#f5ede2,#eee3d4);color:#b58a50;font-size:34px}
-.cart-image-placeholder{width:65px;height:65px;border-radius:9px;display:grid;place-items:center;background:#f2e7d9;color:#a77a4c}
+.menu-image-placeholder{height:100%;min-height:180px;display:grid;place-items:center;background:linear-gradient(135deg,#f5ede2,#eee3d4);color:#d4a62a;font-size:34px}
+.cart-image-placeholder{width:65px;height:65px;border-radius:9px;display:grid;place-items:center;background:#f2e7d9;color:#b98b20}
 .hs-icon{width:23px;height:23px;object-fit:contain;display:inline-block;vertical-align:middle;border-radius:6px}
 .order-button .hs-icon,.button-light .hs-icon,.footer-order .hs-icon,.cart-order-link .hs-icon{width:24px;height:24px}
