@@ -271,3 +271,22 @@ body.delivery-open{overflow:hidden}
 .delivery-order-cta{display:inline-flex;align-items:center;gap:16px}
 .delivery-order-cta>i{font-size:19px;opacity:1}
 @media(max-width:760px){.order-button-nav{gap:8px;padding:8px 13px}.order-button-nav .order-cta-icon{width:28px;height:28px}}
+
+/* Continuous Google branch ratings marquee */
+.reviews-marquee{overflow:hidden;position:relative;width:100%;padding:10px 0 18px;direction:ltr;mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.reviews-marquee-track{display:flex;gap:18px;width:max-content;animation:awafi-google-loop 34s linear infinite;will-change:transform}
+.google-branch-rating{direction:rtl;flex:0 0 285px;min-height:190px;padding:20px;border:1px solid var(--line);border-radius:19px;background:#fff;box-shadow:0 10px 30px rgba(40,25,15,.045);display:flex;flex-direction:column;gap:9px}
+.google-rating-top{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:10px}
+.google-mark{font:800 18px Arial,sans-serif;color:#4285f4}
+.google-branch-name{font-size:16px;color:var(--ink)}
+.google-score{display:flex;align-items:center;gap:12px}
+.google-score b{font-size:30px;line-height:1;color:var(--ink)}
+.google-score .rating-stars{font-size:16px;letter-spacing:1px}
+.google-branch-rating p{margin:0;color:var(--muted);font-size:11px}
+.google-branch-rating>a{margin-top:auto;color:var(--red-dark);font-size:11px;font-weight:700;text-decoration:none}
+.google-branch-rating>a i{margin-right:5px}
+@keyframes awafi-google-loop{from{transform:translateX(0)}to{transform:translateX(50%)}}
+.delivery-option-hunger .delivery-logo,.delivery-option-jahez .delivery-logo{background:#fff!important;border:0!important;box-shadow:none!important}
+.delivery-option-hunger .delivery-logo img,.delivery-option-jahez .delivery-logo img{padding:0!important;transform:scale(1.08);border:0!important;outline:0!important;box-shadow:none!important;mix-blend-mode:multiply}
+@media(max-width:600px){.google-branch-rating{flex-basis:245px}.reviews-marquee-track{animation-duration:28s}}
+@media(prefers-reduced-motion:reduce){.reviews-marquee-track{animation:none;transform:none}}
