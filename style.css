@@ -252,3 +252,13 @@ body.delivery-open{overflow:hidden}
 .order-banner-content{gap:30px}
 .order-banner-content h2{margin-bottom:0}
 @media(max-width:760px){.delivery-order-cta{min-width:135px}.delivery-logo{border-radius:14px}.delivery-logo img{border-radius:11px}}
+
+/* App artwork: round the image itself, not only its holder */
+.delivery-logo{border-radius:15px;overflow:hidden;background:transparent}
+.delivery-logo img{border-radius:12px!important;clip-path:inset(0 round 12px);object-fit:contain;background:#fff}
+.delivery-option-jahez .delivery-logo img,
+.delivery-option-keeta .delivery-logo img,
+.delivery-option-chefz .delivery-logo img,
+.delivery-option-hunger .delivery-logo img{border-radius:12px!important}
+.delivery-option-jahez .delivery-logo,
+.delivery-option-keeta .delivery-logo{background:#fff}
