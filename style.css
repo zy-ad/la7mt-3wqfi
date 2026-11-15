@@ -330,3 +330,17 @@ body.delivery-open{overflow:hidden}
 .delivery-logo img{inset:0!important;width:100%!important;height:100%!important;padding:0!important;border:0!important;outline:0!important;box-shadow:none!important;border-radius:12px!important;clip-path:inset(0 round 12px);object-fit:contain;background:#fff}
 .delivery-option-jahez .delivery-logo img{transform:scale(1.07)}
 .delivery-option-chefz .delivery-logo img{transform:scale(1.13);object-fit:cover}
+
+/* Original three customer testimonials, seamlessly looping */
+.reviews-marquee{width:100%;overflow:hidden;direction:ltr;margin-top:45px;position:relative;padding:0 0 8px;mask-image:linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent)}
+.reviews-marquee-track{display:flex;width:max-content;animation:awafi-testimonials-loop 42s linear infinite;will-change:transform}
+.reviews-marquee-group{display:flex;flex:0 0 auto;gap:18px;padding-right:18px}
+.reviews-marquee-group .review-card{direction:rtl;box-sizing:border-box;width:clamp(280px,30vw,390px);min-height:265px;border-radius:18px;box-shadow:0 10px 30px rgba(50,35,20,.055)}
+.reviews-marquee:hover .reviews-marquee-track{animation-play-state:paused}
+@keyframes awafi-testimonials-loop{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.reviews-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px}
+.reviews-footer small{font-size:10px;color:#a59a8e}
+.reviews-footer a{display:inline-flex;align-items:center;gap:8px;color:var(--red-dark);font-size:12px;font-weight:800;text-decoration:none}
+.reviews-footer a:hover{text-decoration:underline}
+@media(max-width:700px){.reviews-marquee-group .review-card{width:min(82vw,340px);min-height:245px}.reviews-marquee-track{animation-duration:34s}.reviews-footer{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){.reviews-marquee-track{animation:none;transform:none}}
