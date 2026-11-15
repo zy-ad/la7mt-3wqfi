@@ -238,3 +238,17 @@ a.delivery-option:hover{transform:translateY(-2px);border-color:#c8a47a;box-shad
 .delivery-footnote i{margin-top:3px;color:#b18a5c}
 body.delivery-open{overflow:hidden}
 @media(max-width:520px){.delivery-modal{padding:12px}.delivery-dialog{padding:30px 17px 20px;border-radius:20px}.delivery-heading h2{font-size:24px}.delivery-option{min-height:70px;padding:9px 10px}.delivery-logo{width:47px;height:47px;flex-basis:47px}}
+
+/* UX cleanup: external delivery ordering only, no on-site cart */
+.cart-trigger,.cart-drawer,.cart-backdrop,.floating-cart,.add-to-cart{display:none!important}
+.menu-card-bottom{justify-content:flex-start}
+.delivery-logo{border-radius:16px;background:#fff;box-shadow:0 4px 14px #24180d0b}
+.delivery-logo img{inset:3px;width:calc(100% - 6px);height:calc(100% - 6px);padding:4px;border-radius:13px;object-fit:contain;background:#fff}
+.delivery-option{border-radius:18px}
+.delivery-option-disabled{opacity:1;background:#fff;border-style:solid}
+.delivery-status{background:#f0e9df;color:#8b7458}
+.delivery-order-cta{min-width:148px;justify-content:center;gap:18px;border-radius:999px;font-weight:700}
+.order-banner-content>div>p{display:none}
+.order-banner-content{gap:30px}
+.order-banner-content h2{margin-bottom:0}
+@media(max-width:760px){.delivery-order-cta{min-width:135px}.delivery-logo{border-radius:14px}.delivery-logo img{border-radius:11px}}
