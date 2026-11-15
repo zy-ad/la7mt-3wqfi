@@ -262,3 +262,12 @@ body.delivery-open{overflow:hidden}
 .delivery-option-hunger .delivery-logo img{border-radius:12px!important}
 .delivery-option-jahez .delivery-logo,
 .delivery-option-keeta .delivery-logo{background:#fff}
+
+/* Clear, recognizable delivery call-to-action icon */
+.order-button-nav{display:inline-flex;align-items:center;gap:10px;padding:9px 17px}
+.order-button-nav .order-cta-icon{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.17)}
+.order-button-nav .order-cta-icon i{font-size:17px;opacity:1}
+.order-button-nav>span:last-child{font-size:13px;font-weight:800}
+.delivery-order-cta{display:inline-flex;align-items:center;gap:16px}
+.delivery-order-cta>i{font-size:19px;opacity:1}
+@media(max-width:760px){.order-button-nav{gap:8px;padding:8px 13px}.order-button-nav .order-cta-icon{width:28px;height:28px}}
