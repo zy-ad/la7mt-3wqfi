@@ -73,7 +73,12 @@ const menuExpand=document.getElementById('menu-expand');if(menuExpand)menuExpand
 const menuToggle=document.querySelector('.mobile-menu-toggle'),mobileNav=document.getElementById('mobile-menu');
 function closeMobileMenu(){if(!mobileNav||!menuToggle)return;mobileNav.hidden=true;menuToggle.setAttribute('aria-expanded','false');menuToggle.setAttribute('aria-label','فتح القائمة');}
 if(menuToggle&&mobileNav){menuToggle.addEventListener('click',()=>{const opening=menuToggle.getAttribute('aria-expanded')!=='true';mobileNav.hidden=!opening;menuToggle.setAttribute('aria-expanded',String(opening));menuToggle.setAttribute('aria-label',opening?'إغلاق القائمة':'فتح القائمة');});mobileNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMobileMenu));document.addEventListener('click',event=>{if(!mobileNav.hidden&&!mobileNav.contains(event.target)&&!menuToggle.contains(event.target))closeMobileMenu();});}
-document.querySelectorAll('a[href*="hungerstation.com"]').forEach(link=>{link.href=hungerUrl;link.target='_blank';link.rel='noopener noreferrer';});
+document.querySelectorAll('a[href*="hungerstation.com"]').forEach(link=>{link.href='#delivery-options';link.removeAttribute('target');link.removeAttribute('rel');link.dataset.openDelivery='true';});
+const deliveryModal=document.getElementById('delivery-modal');
+function openDelivery(){if(!deliveryModal)return;deliveryModal.hidden=false;document.body.classList.add('delivery-open');const first=deliveryModal.querySelector('a[href]');if(first)first.focus();}
+function closeDelivery(){if(!deliveryModal)return;deliveryModal.hidden=true;document.body.classList.remove('delivery-open');}
+document.addEventListener('click',event=>{const trigger=event.target.closest('[data-open-delivery]');if(trigger){event.preventDefault();openDelivery();return;}if(event.target.closest('[data-close-delivery]'))closeDelivery();});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&deliveryModal&&!deliveryModal.hidden)closeDelivery();});
 const header=document.querySelector('.site-header');if(header)window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>12),{passive:true});
 if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:.12,rootMargin:'0px 0px -25px 0px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));}else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
 const year=document.getElementById('current-year');if(year)year.textContent=new Date().getFullYear();
