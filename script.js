@@ -93,8 +93,6 @@ function paintHero(){if(!heroNode||!heroSlides.length)return;heroNode.classList.
 function startHero(){window.clearInterval(heroTimer);paintHero();heroTimer=window.setInterval(()=>{heroIndex=(heroIndex+1)%heroSlides.length;paintHero();},5500);}
 if(heroDots)heroDots.addEventListener('click',e=>{const b=e.target.closest('[data-hero-index]');if(!b)return;heroIndex=Number(b.dataset.heroIndex);startHero();});
 startHero();
-const reviewsTrack=document.querySelector('.reviews-grid');
-if(reviewsTrack){const cards=[...reviewsTrack.querySelectorAll('.review-card')];let reviewIndex=0,reviewTimer=0;function advanceReviews(){if(cards.length<2)return;reviewIndex=(reviewIndex+1)%cards.length;const target=cards[reviewIndex];const rtl=getComputedStyle(reviewsTrack).direction==='rtl';const left=rtl?target.offsetLeft+target.offsetWidth-reviewsTrack.clientWidth:target.offsetLeft;reviewsTrack.scrollTo({left,behavior:'smooth'});}function startReviewLoop(){window.clearInterval(reviewTimer);reviewTimer=window.setInterval(advanceReviews,4200);}startReviewLoop();reviewsTrack.addEventListener('mouseenter',()=>window.clearInterval(reviewTimer));reviewsTrack.addEventListener('mouseleave',startReviewLoop);reviewsTrack.addEventListener('focusin',()=>window.clearInterval(reviewTimer));reviewsTrack.addEventListener('focusout',startReviewLoop);window.addEventListener('resize',()=>{reviewIndex=0;});}
 
 
 let qualityImages=['صورة-الفرع.jpg','f582d65c-5636-4939-a2d3-80d118d80fcb.webp'];
